@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Encapsulation - JavaTutorial</title>
+	<title>Logging - JavaTutorial</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
@@ -114,8 +114,8 @@
 
         
             
-<li class="active">
-    <a href="./">Encapsulation</a>
+<li >
+    <a href="../oop_encapsulation/">Encapsulation</a>
 </li>
 
         
@@ -154,8 +154,8 @@
 
                         
                             
-<li >
-    <a href="../logging/">Logging</a>
+<li class="active">
+    <a href="./">Logging</a>
 </li>
 
                         
@@ -198,12 +198,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../oop/">
+                        <a rel="next" href="../error_handling/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../oop_inheritance/">
+                        <a rel="prev" href="../ide/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -219,93 +219,107 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#implementation">Implementation</a></li>
+        <li class="main active"><a href="#log4j">Log4j</a></li>
         
     
         <li class="main "><a href="#example">Example</a></li>
         
     
-        <li class="main "><a href="#benefits">Benefits</a></li>
-        
-    
-        <li class="main "><a href="#related-readings">Related Readings</a></li>
+        <li class="main "><a href="#suggested-readings">Suggested Readings</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p><strong>Encapsulation</strong> is one of the four fundamental OOP concepts. The other three are inheritance, polymorphism, and abstraction.</p>
-<p>Encapsulation in Java is a mechanism of wrapping the data (variables) and code acting on the data (methods) together as a single unit. In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class. Therefore, it is also known as <strong>data hiding</strong>.</p>
-<h2 id="implementation">Implementation</h2>
-<p>To achieve encapsulation in Java</p>
+<h1 id="log4j">Log4j</h1>
+<p><strong>log4j</strong> is a reliable, fast and flexible logging framework (APIs) written in Java, which is distributed under the Apache Software License. log4j is a popular logging package written in Java. log4j has been ported to the C, C++, C#, Perl, Python, Ruby, and Eiffel languages.</p>
+<p>log4j is highly configurable through external configuration files at runtime. It views the logging process in terms of levels of priorities and offers mechanisms to direct logging information to a great variety of destinations, such as a database, file, console, UNIX Syslog, etc.</p>
+<p><strong>log4j</strong> has three main components:</p>
 <ul>
-<li>Declare the variables of a class as private.</li>
-<li>Provide public setter and getter methods to modify and view the variables values.</li>
+<li><strong>loggers</strong>: Responsible for capturing logging information.</li>
+<li><strong>appenders</strong>: Responsible for publishing logging information to various preferred destinations.</li>
+<li><strong>layouts</strong>: Responsible for formatting logging information in different styles.</li>
 </ul>
-<h2 id="example">Example</h2>
-<p>Following is an example that demonstrates how to achieve Encapsulation in Java</p>
-<pre><code class="java">/* File name : EncapTest.java */
-public class EncapTest {
-   private String name;
-   private String idNum;
-   private int age;
+<p><strong>log4j</strong> features</p>
+<ul>
+<li>It is thread-safe.</li>
+<li>It is optimized for speed.</li>
+<li>It is based on a named logger hierarchy.</li>
+<li>It supports multiple output appenders per logger.</li>
+<li>It supports internationalization.</li>
+<li>It is not restricted to a predefined set of facilities.</li>
+<li>Logging behavior can be set at runtime using a configuration file.</li>
+<li>It is designed to handle Java Exceptions from the start.</li>
+<li>It uses multiple levels, namely ALL, TRACE, DEBUG, INFO, WARN, ERROR and FATAL.</li>
+<li>The format of the log output can be easily changed by extending the Layout class.</li>
+<li>The target of the log output as well as the writing strategy can be altered by implementations of the Appender interface.</li>
+<li>It is fail-stop. However, although it certainly strives to ensure delivery, log4j does not guarantee that each log statement will be delivered to its destination.</li>
+</ul>
+<h1 id="example">Example</h1>
+<p>Step 1: Add <em>log4j</em> dependency to your <em>build.gradle</em> file</p>
+<pre><code>compile group: 'log4j', name: 'log4j', version: '1.2.17'
+</code></pre>
 
-   public int getAge() {
-      return age;
-   }
+<p>Step 2: Add log configuration in <em>main/resources/log4j.property</em></p>
+<pre><code># Set root logger level to DEBUG and its only appender to A1.
+log4j.rootLogger=DEBUG, A1
 
-   public String getName() {
-      return name;
-   }
+# A1 is set to be a ConsoleAppender.
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
 
-   public String getIdNum() {
-      return idNum;
-   }
+# A1 uses PatternLayout.
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
 
-   public void setAge( int newAge) {
-      age = newAge;
-   }
+# Print only messages of level WARN or above in the package com.foo.
+log4j.logger.com.foo=WARN
+Here is another configuration file that uses multiple appenders:
 
-   public void setName(String newName) {
-      name = newName;
-   }
+log4j.rootLogger=debug, stdout, R
 
-   public void setIdNum( String newId) {
-      idNum = newId;
-   }
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+
+# Pattern to output the caller's file name and line number.
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] (%F:%L) - %m%n
+
+log4j.appender.R=org.apache.log4j.RollingFileAppender
+log4j.appender.R.File=example.log
+
+log4j.appender.R.MaxFileSize=100KB
+# Keep one backup file
+log4j.appender.R.MaxBackupIndex=1
+
+log4j.appender.R.layout=org.apache.log4j.PatternLayout
+log4j.appender.R.layout.ConversionPattern=%p %t %c - %m%n
+</code></pre>
+
+<p>Step 3: Sample log4j program</p>
+<pre><code class="java">package logging;
+
+import org.apache.log4j.Logger;
+
+public class LoggingDemo {
+    public static void main(String[] args) {
+        final Logger logger = Logger.getLogger(LoggingDemo.class);
+        logger.debug(&quot;debug statement&quot;);
+        logger.info(&quot;info statement&quot;);
+        logger.error(&quot;error statement&quot;);
+    }
 }
 </code></pre>
 
-<p>The public setXXX() and getXXX() methods are the access points of the instance variables of the EncapTest class. Normally, these methods are referred as getters and setters. Therefore, any class that wants to access the variables should access them through these getters and setters.</p>
-<p>The variables of the EncapTest class can be accessed using the following program −</p>
-<pre><code class="java">/* File name : RunEncap.java */
-public class RunEncap {
-
-   public static void main(String args[]) {
-      EncapTest encap = new EncapTest();
-      encap.setName(&quot;James&quot;);
-      encap.setAge(20);
-      encap.setIdNum(&quot;12343ms&quot;);
-
-      System.out.print(&quot;Name : &quot; + encap.getName() + &quot; Age : &quot; + encap.getAge());
-   }
-}
+<p>Output</p>
+<pre><code>DEBUG [main] (LoggingDemo.java:10) - debug statement
+ INFO [main] (LoggingDemo.java:11) - info statement
+ERROR [main] (LoggingDemo.java:12) - error statement
 </code></pre>
 
-<p>This will produce the following result −</p>
-<pre><code>Name : James Age : 20
-</code></pre>
-
-<h2 id="benefits">Benefits</h2>
+<h1 id="suggested-readings">Suggested Readings</h1>
 <ul>
-<li>The fields of a class can be made read-only or write-only.</li>
-<li>A class can have total control over what is stored in its fields.</li>
-<li>The users of a class do not know how the class stores its data. A class can change the data type of a field and users of the class do not need to change any of their code.</li>
-</ul>
-<h2 id="related-readings">Related Readings</h2>
-<ul>
-<li><a href="https://www.tutorialspoint.com/java/java_inheritance.htm">"Java Inheritance". www.tutorialspoint.com. N.p., 2016. Web. 10 Dec. 2016.</a></li>
+<li>"Log4j Tutorial". 2016. <em>www.tutorialspoint.com</em>. <a href="http://www.tutorialspoint.com/log4j/">http://www.tutorialspoint.com/log4j/</a>.</li>
+<li>"Java Logging". 2016. <em>tutorials.jenkov.com</em>. <a href="http://tutorials.jenkov.com/java-logging/index.html">http://tutorials.jenkov.com/java-logging/index.html</a>.</li>
 </ul></div>
             
         </div>

@@ -502,6 +502,6 @@ In Java, it is possible to define two catergories of Exceptions and Errors.
 * JVM Exceptions − These are exceptions/errors that are exclusively or logically thrown by the JVM. Examples: NullPointerException, ArrayIndexOutOfBoundsException, ClassCastException.
 * Programmatic Exceptions − These exceptions are thrown explicitly by the application or the API programmers. Examples: IllegalArgumentException, IllegalStateException.
 
-## Related Readings
+## Suggested Readings
 
 * ["Java Exceptions". 2016. *www.Tutorialspoint.Com*. https://www.tutorialspoint.com/java/java_exceptions.htm.](https://www.tutorialspoint.com/java/java_exceptions.htm)
