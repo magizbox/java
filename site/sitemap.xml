@@ -54,6 +54,12 @@
     </url>
         
     <url>
+     <loc>/logging/</loc>
+     <lastmod>2017-07-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/ide/</loc>
      <lastmod>2017-07-29</lastmod>
      <changefreq>daily</changefreq>

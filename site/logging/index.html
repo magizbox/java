@@ -8,7 +8,7 @@
         <meta name="author" content="Vu Anh">
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Polymorphism - Java</title>
+        <title>Logging - Java</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -67,7 +67,7 @@
                     <li >
                         <a href="../get_started/"><span class='fa fa-cloud-download'></span> Get Started</a>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='fa fa-book'></span> Basic <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
@@ -95,8 +95,8 @@
     <a href="../oop_inheritance/">Inheritance</a>
 </li>
             
-<li class="active">
-    <a href="./">Polymorphism</a>
+<li >
+    <a href="../oop_polymorphism/">Polymorphism</a>
 </li>
             
 <li >
@@ -110,7 +110,7 @@
 </li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='fa fa-book'></span> Software Development <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
@@ -118,8 +118,8 @@
     <a href="../error_handling/">Error Handling</a>
 </li>
                             
-<li >
-    <a href="../logging/">Logging</a>
+<li class="active">
+    <a href="./">Logging</a>
 </li>
                             
 <li >
@@ -148,12 +148,12 @@
                     </a>
                 </li>
                     <li >
-                        <a rel="next" href="../oop_inheritance/">
+                        <a rel="next" href="../error_handling/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../oop_abstraction/">
+                        <a rel="prev" href="../ide/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -165,151 +165,101 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#example">Example</a></li>
-        <li class="main "><a href="#virtual-methods">Virtual Methods</a></li>
-        <li class="main "><a href="#related-readings">Related Readings</a></li>
+        <li class="main active"><a href="#log4j">Log4j</a></li>
+        <li class="main "><a href="#example">Example</a></li>
+        <li class="main "><a href="#suggested-readings">Suggested Readings</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p><strong>Polymorphism</strong> is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.</p>
-<p>Any Java object that can pass more than one IS-A test is considered to be polymorphic. In Java, all Java objects are polymorphic since any object will pass the IS-A test for their own type and for the class Object.</p>
-<p>It is important to know that the only possible way to access an object is through a reference variable. A reference variable can be of only one type. Once declared, the type of a reference variable cannot be changed.</p>
-<p>The reference variable can be reassigned to other objects provided that it is not declared final. The type of the reference variable would determine the methods that it can invoke on the object.</p>
-<p>A reference variable can refer to any object of its declared type or any subtype of its declared type. A reference variable can be declared as a class or interface type.</p>
-<h2 id="example">Example</h2>
-<p>Let us look at an example.</p>
-<pre><code class="java">public interface Vegetarian{}
-public class Animal{}
-public class Deer extends Animal implements Vegetarian{}
-</code></pre>
-
-<p>Now, the Deer class is considered to be polymorphic since this has multiple inheritance. Following are true for the above examples</p>
+<h1 id="log4j">Log4j</h1>
+<p><strong>log4j</strong> is a reliable, fast and flexible logging framework (APIs) written in Java, which is distributed under the Apache Software License. log4j is a popular logging package written in Java. log4j has been ported to the C, C++, C#, Perl, Python, Ruby, and Eiffel languages.</p>
+<p>log4j is highly configurable through external configuration files at runtime. It views the logging process in terms of levels of priorities and offers mechanisms to direct logging information to a great variety of destinations, such as a database, file, console, UNIX Syslog, etc.</p>
+<p><strong>log4j</strong> has three main components:</p>
 <ul>
-<li>A Deer IS-A Animal</li>
-<li>A Deer IS-A Vegetarian</li>
-<li>A Deer IS-A Deer</li>
-<li>A Deer IS-A Object</li>
+<li><strong>loggers</strong>: Responsible for capturing logging information.</li>
+<li><strong>appenders</strong>: Responsible for publishing logging information to various preferred destinations.</li>
+<li><strong>layouts</strong>: Responsible for formatting logging information in different styles.</li>
 </ul>
-<p>When we apply the reference variable facts to a Deer object reference, the following declarations are legal</p>
-<pre><code class="java">Deer d = new Deer();
-Animal a = d;
-Vegetarian v = d;
-Object o = d;
-</code></pre>
-
-<p>All the reference variables d, a, v, o refer to the same Deer object in the heap.</p>
-<h2 id="virtual-methods">Virtual Methods</h2>
-<p>In this section, I will show you how the behavior of overridden methods in Java allows you to take advantage of polymorphism when designing your classes.</p>
-<p>We already have discussed method overriding, where a child class can override a method in its parent. An overridden method is essentially hidden in the parent class, and is not invoked unless the child class uses the super keyword within the overriding method.</p>
-<pre><code class="java">/* File name : Employee.java */
-public class Employee {
-   private String name;
-   private String address;
-   private int number;
-
-   public Employee(String name, String address, int number) {
-      System.out.println(&quot;Constructing an Employee&quot;);
-      this.name = name;
-      this.address = address;
-      this.number = number;
-   }
-
-   public void mailCheck() {
-      System.out.println(&quot;Mailing a check to &quot; + this.name + &quot; &quot; + this.address);
-   }
-
-   public String toString() {
-      return name + &quot; &quot; + address + &quot; &quot; + number;
-   }
-
-   public String getName() {
-      return name;
-   }
-
-   public String getAddress() {
-      return address;
-   }
-
-   public void setAddress(String newAddress) {
-      address = newAddress;
-   }
-
-   public int getNumber() {
-      return number;
-   }
-}
-</code></pre>
-
-<p>Now suppose we extend Employee class as follows</p>
-<pre><code class="java">/* File name : Salary.java */
-public class Salary extends Employee {
-   private double salary; // Annual salary
-
-   public Salary(String name, String address, int number, double salary) {
-      super(name, address, number);
-      setSalary(salary);
-   }
-
-   public void mailCheck() {
-      System.out.println(&quot;Within mailCheck of Salary class &quot;);
-      System.out.println(&quot;Mailing check to &quot; + getName()
-      + &quot; with salary &quot; + salary);
-   }
-
-   public double getSalary() {
-      return salary;
-   }
-
-   public void setSalary(double newSalary) {
-      if(newSalary &gt;= 0.0) {
-         salary = newSalary;
-      }
-   }
-
-   public double computePay() {
-      System.out.println(&quot;Computing salary pay for &quot; + getName());
-      return salary/52;
-   }
-}
-</code></pre>
-
-<p>Now, you study the following program carefully and try to determine its output</p>
-<pre><code class="java">/* File name : VirtualDemo.java */
-public class VirtualDemo {
-
-   public static void main(String [] args) {
-      Salary s = new Salary(&quot;Mohd Mohtashim&quot;, &quot;Ambehta, UP&quot;, 3, 3600.00);
-      Employee e = new Salary(&quot;John Adams&quot;, &quot;Boston, MA&quot;, 2, 2400.00);
-      System.out.println(&quot;Call mailCheck using Salary reference --&quot;);
-      s.mailCheck();
-      System.out.println(&quot;\n Call mailCheck using Employee reference--&quot;);
-      e.mailCheck();
-   }
-}
-</code></pre>
-
-<p>This will produce the following result</p>
-<pre><code>Constructing an Employee
-Constructing an Employee
-
-Call mailCheck using Salary reference --
-Within mailCheck of Salary class
-Mailing check to Mohd Mohtashim with salary 3600.0
-
-Call mailCheck using Employee reference--
-Within mailCheck of Salary class
-Mailing check to John Adams with salary 2400.0
-</code></pre>
-
-<p>Here, we instantiate two Salary objects. One using a Salary reference <strong>s</strong>, and the other using an Employee reference <strong>e</strong>.</p>
-<p>While invoking <em>s.mailCheck()</em>, the compiler sees <em>mailCheck()</em> in the Salary class at compile time, and the JVM invokes <em>mailCheck()</em> in the Salary class at run time.</p>
-<p><em>mailCheck()</em> on <strong>e</strong> is quite different because <strong>e</strong> is an Employee reference. When the compiler sees <em>e.mailCheck()</em>, the compiler sees the <em>mailCheck()</em> method in the Employee class.</p>
-<p>Here, at compile time, the compiler used mailCheck() in Employee to validate this statement. At run time, however, the JVM invokes mailCheck() in the Salary class.</p>
-<p>This behavior is referred to as virtual method invocation, and these methods are referred to as virtual methods. An overridden method is invoked at run time, no matter what data type the reference is that was used in the source code at compile time.</p>
-<h2 id="related-readings">Related Readings</h2>
+<p><strong>log4j</strong> features</p>
 <ul>
-<li><a href="https://www.tutorialspoint.com/java/java_polymorphism.htm">"Java Polymorphism". <em>www.tutorialspoint.com</em>. N.p., 2016. Web. 10 Dec. 2016.</a></li>
+<li>It is thread-safe.</li>
+<li>It is optimized for speed.</li>
+<li>It is based on a named logger hierarchy.</li>
+<li>It supports multiple output appenders per logger.</li>
+<li>It supports internationalization.</li>
+<li>It is not restricted to a predefined set of facilities.</li>
+<li>Logging behavior can be set at runtime using a configuration file.</li>
+<li>It is designed to handle Java Exceptions from the start.</li>
+<li>It uses multiple levels, namely ALL, TRACE, DEBUG, INFO, WARN, ERROR and FATAL.</li>
+<li>The format of the log output can be easily changed by extending the Layout class.</li>
+<li>The target of the log output as well as the writing strategy can be altered by implementations of the Appender interface.</li>
+<li>It is fail-stop. However, although it certainly strives to ensure delivery, log4j does not guarantee that each log statement will be delivered to its destination.</li>
+</ul>
+<h1 id="example">Example</h1>
+<p>Step 1: Add <em>log4j</em> dependency to your <em>build.gradle</em> file</p>
+<pre><code>compile group: 'log4j', name: 'log4j', version: '1.2.17'
+</code></pre>
+
+<p>Step 2: Add log configuration in <em>main/resources/log4j.property</em></p>
+<pre><code># Set root logger level to DEBUG and its only appender to A1.
+log4j.rootLogger=DEBUG, A1
+
+# A1 is set to be a ConsoleAppender.
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+
+# A1 uses PatternLayout.
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+
+# Print only messages of level WARN or above in the package com.foo.
+log4j.logger.com.foo=WARN
+Here is another configuration file that uses multiple appenders:
+
+log4j.rootLogger=debug, stdout, R
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+
+# Pattern to output the caller's file name and line number.
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] (%F:%L) - %m%n
+
+log4j.appender.R=org.apache.log4j.RollingFileAppender
+log4j.appender.R.File=example.log
+
+log4j.appender.R.MaxFileSize=100KB
+# Keep one backup file
+log4j.appender.R.MaxBackupIndex=1
+
+log4j.appender.R.layout=org.apache.log4j.PatternLayout
+log4j.appender.R.layout.ConversionPattern=%p %t %c - %m%n
+</code></pre>
+
+<p>Step 3: Sample log4j program</p>
+<pre><code class="java">package logging;
+
+import org.apache.log4j.Logger;
+
+public class LoggingDemo {
+    public static void main(String[] args) {
+        final Logger logger = Logger.getLogger(LoggingDemo.class);
+        logger.debug(&quot;debug statement&quot;);
+        logger.info(&quot;info statement&quot;);
+        logger.error(&quot;error statement&quot;);
+    }
+}
+</code></pre>
+
+<p>Output</p>
+<pre><code>DEBUG [main] (LoggingDemo.java:10) - debug statement
+ INFO [main] (LoggingDemo.java:11) - info statement
+ERROR [main] (LoggingDemo.java:12) - error statement
+</code></pre>
+
+<h1 id="suggested-readings">Suggested Readings</h1>
+<ul>
+<li>"Log4j Tutorial". 2016. <em>www.tutorialspoint.com</em>. <a href="http://www.tutorialspoint.com/log4j/">http://www.tutorialspoint.com/log4j/</a>.</li>
+<li>"Java Logging". 2016. <em>tutorials.jenkov.com</em>. <a href="http://tutorials.jenkov.com/java-logging/index.html">http://tutorials.jenkov.com/java-logging/index.html</a>.</li>
 </ul></div>
         </div>
 

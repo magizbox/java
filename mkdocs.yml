@@ -17,6 +17,7 @@ pages:
   - "Files & IO": "io.md"
 - "<span class='fa fa-book'></span> Software Development":
   - "Error Handling": "error_handling.md"
+  - "Logging": "logging.md"
   - "IDE": "ide.md"
   - "Package Manager": "package_manager.md"
   - "Build Tool": "build_tool.md"
