@@ -1,14 +1,8 @@
 # Data Structure
 
-# datetime
+# Number, String 
 
-```
-Calendar c = Calendar.getInstance();
-```
-
-# string, number
-
-Convert [^1]
+Convert number to string
 
 ```java
 String.valueOf(1000)
@@ -21,7 +15,6 @@ Make a random
 (new Random()).nextInt(100)
 ```
 
-[^1]: [How to convert from int to String?](http://stackoverflow.com/questions/4105331/how-to-convert-from-int-to-string)
 
 # Collection
 
@@ -117,11 +110,19 @@ public class Dog {
 }
 ```
 
-## List [^1]
+## List
 
 ```
 List<String> places = Arrays.asList("Buenos Aires", "Córdoba", "La Plata");
 ```
 
-[^1]: [Initialization of an ArrayList in one line](http://stackoverflow.com/questions/1005073/initialization-of-an-arraylist-in-one-line)
+# Datetime
 
+```
+Calendar c = Calendar.getInstance();
+```
+
+# Suggest Readings
+
+* [Initialization of an ArrayList in one line](http://stackoverflow.com/questions/1005073/initialization-of-an-arraylist-in-one-line)
+* [How to convert from int to String?](http://stackoverflow.com/questions/4105331/how-to-convert-from-int-to-string)

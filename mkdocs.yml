@@ -1,21 +1,21 @@
-site_name: JavaTutorial
+site_name: Java
 site_author: "Vu Anh"
 google_analytics: ["UA-68978617-1", "magizbox.com"]
 
 pages:
 - "<span class='fa fa-home'></span> Home": "index.md"
-- "<span class='fa fa-cloud-download'></span> Getting Started": 'getting_started.md'
-- "<span class='fa fa-book'></span> Learn":
-  - "Introduction": "introduction.md"
-  - "Basic Syntax": "basic_syntax.md"
-  - "Data Structure": "data_structure.md"
+- "<span class='fa fa-cloud-download'></span> Get Started": 'get_started.md'
+- "<span class='fa fa-book'></span> Basic":
+  - "Basic Syntax: print, conditional, loop, function": "basic_syntax.md"
+  - "Data Structure (number, string, collection, datetime)": "data_structure.md"
   - "OOP":
-    - "Overview": "oop.md"
+    - "Classes and Objects": "oop.md"
     - "Encapsulation": "oop_encapsulation.md"
     - "Inheritance": "oop_inheritance.md"
     - "Polymorphism": "oop_polymorphism.md"
     - "Abstraction": "oop_abstraction.md"
   - "Files & IO": "io.md"
+- "<span class='fa fa-book'></span> Software Development":
   - "Error Handling": "error_handling.md"
   - "IDE": "ide.md"
   - "Package Manager": "package_manager.md"
@@ -24,6 +24,7 @@ pages:
 
 markdown_extensions:
     - footnotes
+    - mdx_math
 
 extra_css:
   - components/magiz-c-book/src/book.css
@@ -31,6 +32,8 @@ extra_css:
   - components/magiz-c-video/src/video.css
   - components/magiz-c-benchmark/src/benchmark.css
   - components/magiz-c-paper/src/paper.css
+  - components/magiz-doc/style.css
+  - components/magiz-doc/highlight.css
 
 extra_javascript:
   - components/underscore/underscore.js
@@ -41,3 +44,7 @@ extra_javascript:
   - components/magiz-c-benchmark/src/bootstrap-popup.js
   - components/magiz-c-book/src/book.js
   - components/magiz-c-video/src/video.js
+  - components/jquery/dist/jquery.js
+  - components/magiz-doc/doc.js
+  - components/magiz-doc/footer.js
+  - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
