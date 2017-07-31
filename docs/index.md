@@ -26,7 +26,7 @@ This site is intended to host a variety of resources and pointers to information
 
 ## Go Deeper
 
-* [Files & IO](io.md)
+* [File System & IO](io.md)
 * Operating System Programming
 * Networking Programming
 * Concurrency and Parallelism Programming

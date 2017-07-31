@@ -3,19 +3,20 @@ site_author: "Vu Anh"
 google_analytics: ["UA-68978617-1", "magizbox.com"]
 
 pages:
-- "<span class='fa fa-home'></span> Home": "index.md"
-- "<span class='fa fa-cloud-download'></span> Get Started": 'get_started.md'
-- "<span class='fa fa-book'></span> Basics":
+- "Home": "index.md"
+- "Get Started": 'get_started.md'
+- "Basics":
   - "Basic Syntax: print, conditional, loop, function": "basic_syntax.md"
   - "Data Structure (number, string, collection, datetime)": "data_structure.md"
-  - "OOP":
+  - "Object Oriented Programming":
     - "Classes and Objects": "oop.md"
     - "Encapsulation": "oop_encapsulation.md"
     - "Inheritance": "oop_inheritance.md"
     - "Polymorphism": "oop_polymorphism.md"
     - "Abstraction": "oop_abstraction.md"
-  - "Files & IO": "io.md"
-- "<span class='fa fa-book'></span> Software Development":
+- "Go Deeper":
+  - "File System & IO": "io.md"
+- "Development":
   - "Error Handling": "error_handling.md"
   - "Logging": "logging.md"
   - "IDE": "ide.md"
